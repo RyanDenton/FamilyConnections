@@ -13,8 +13,15 @@ import os
 import datetime
 import random
 from random import randint
+#from secrets import *
+from os import environ
 
-from secrets import *
+os.environ.get('TIMES',3)
+
+CONSUMER_KEY = os.environ.get('CONSUMER_KEY')
+CONSUMER_SECRET = os.environ.get('CONSUMER_SECRET')
+ACCESS_KEY = os.environ.get('ACCESS_KEY')
+ACCESS_SECRET = os.environ.get('ACCESS_SECRET')
 
 #---------------------------------------------------------#
 # Define Functions
