@@ -9,7 +9,13 @@ verify_ssl = true
 django = "*"
 gunicorn = "*"
 django-heroku = "*"
-
+tweepy = "*"
+time = "*"
+sys = "*"
+requests = "*"
+os = "*"
+datetime = "*"
+random = "*"
 
 [requires]
 
