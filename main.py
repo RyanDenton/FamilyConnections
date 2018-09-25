@@ -16,8 +16,6 @@ from random import randint
 #from secrets import *
 from os import environ
 
-os.environ.get('TIMES',3)
-
 CONSUMER_KEY = os.environ.get('CONSUMER_KEY')
 CONSUMER_SECRET = os.environ.get('CONSUMER_SECRET')
 ACCESS_KEY = os.environ.get('ACCESS_KEY')
@@ -231,21 +229,30 @@ for Relative in RelativeList:
 
 		if False in FollowedFamilyMember:
 
+			print("Unfollowed family member found.")
+
 			#---------------------------------------------------------#
 			# Check for new Tweets
 			#---------------------------------------------------------#
 
-			#print("check latest Tweets")
+			print("Check for new tweets by relative...")
 
 			Tweets = api.user_timeline(Relative)
 
 			for Tweet in Tweets:
 
 				TweetActioned=False
+				
+				print("Tweet found:")
+				print(Tweet.created_at)
+				print(Tweet.text)
 
-				#print(Tweet.text)
-				# If Tweet was within the last hour.
+				print("Proceed if tweet created in the past 24hrs.")
+
+				# If Tweet was within the last 24 hours.
 				if datetime_from_utc_to_local(Tweet.created_at) >= CurrentDateTime - datetime.timedelta(hours=24):
+
+					print("Proceeding...")
 
 					if Tweet.text[:2]=="RT":
 						#print("Message is a Retweet.")
@@ -322,6 +329,9 @@ for Relative in RelativeList:
 								print(ReplyText)
 								tweet_image(ImagePath, ReplyText, Tweet.id)
 						else:
-							print("Tweet already actioned.")		
+							print("Tweet already actioned.")	
+
+				else:
+					print("Tweet out of scope, ignoring.")	
 
 print("End.")
